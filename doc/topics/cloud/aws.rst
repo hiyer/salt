@@ -459,6 +459,9 @@ control various aspects of the spot instance launching:
   (default=1)
 * ``wait_for_spot_max_failures``: maximum number of failures before giving up
   on launching your spot instance (default=10)
+* ``block_duration``: the required duration for the spot instance, when using
+  Spot Blocks. The value must be a multiple of 60 between 60 and 360, both
+  inclusive.
 
 If you find that you're being throttled by AWS while polling for spot
 instances, you can set the following in your core cloud configuration

@@ -1748,6 +1748,14 @@ def request_instance(vm_=None, call=None):
                   if 'type' in spot_config else 'one-time',
                   'SpotPrice': spot_config['spot_price']}
 
+        if 'block_duration' in spot_config:
+            duration = int(block_duration)
+            if duration not in xrange(60, 420, 60):
+                raise SaltCloudSystemExit(
+                   'Block duration config {0} must be a multiple of '
+                   '60 between 60 and 360, both inclusive.'.format(duration))
+            params['BlockDurationMinutes'] = duration
+
         # All of the necessary launch parameters for a VM when using
         # spot instances are the same except for the prefix below
         # being tacked on.
